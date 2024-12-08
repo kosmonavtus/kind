@@ -19,10 +19,11 @@ spec:
         - values.yaml
       values: |
               controller: 
-                name: controller-ext
+                name: controller
                 ingressClassResource:
-                  name: nginx-external
-                  default: true
+                  name: nginx
+                  enabled: true
+                  default: false
   syncPolicy:
     automated:
       prune: true
