@@ -1,0 +1,26 @@
+#https://github.com/kubernetes/ingress-nginx/blob/main/charts/ingress-nginx/values.yaml
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-nginx-ext
+  namespace: argocd
+spec:
+  project: infra
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: ingress-nginx
+  source:
+    repoURL: https://kubernetes.github.io/ingress-nginx
+    targetRevision: 4.7.2
+    chart: ingress-nginx
+    helm:
+      valueFiles:
+        - values.yaml
+      values: |
+              controller: 
+                name: controller-ext
+                ingressClassResource:
+                  name: nginx-external
+                  default: false
+                  controllerValue: "k8s.io/ingress-nginx-ext"
