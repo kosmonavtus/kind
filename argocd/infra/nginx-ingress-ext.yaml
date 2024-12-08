@@ -24,3 +24,9 @@ spec:
                   name: nginx-external
                   default: false
                   controllerValue: "k8s.io/ingress-nginx-ext"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
