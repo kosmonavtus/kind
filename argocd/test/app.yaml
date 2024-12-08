@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: echo-test
+  namespace: argocd
+spec:
+  project: test
+  source:
+    repoURL: https://github.com/kosmonavtus/deployments_test
+    targetRevision: HEAD
+    path: ./
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: echo-test
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
