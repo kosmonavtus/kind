@@ -17,7 +17,8 @@ spec:
           ha:
             enabled: true
             replicas: 3
-            raft: true
+            raft:
+              enabled: true
           dataStorage:
             enabled: true
             storageClass: standard
