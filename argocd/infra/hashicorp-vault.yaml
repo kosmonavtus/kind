@@ -38,13 +38,13 @@ spec:
                   storage "raft" {
                   path = "/vault/data"
                     retry_join {
-                    leader_api_addr = "https://hashicorp-vault-0.hashicorp-vault-internal:8200"
+                    leader_api_addr = "http://hashicorp-vault-0.hashicorp-vault-internal:8200"
                   }
                     retry_join {
-                    leader_api_addr = "https://hashicorp-vault-1.hashicorp-vault-internal:8200"
+                    leader_api_addr = "http://hashicorp-vault-1.hashicorp-vault-internal:8200"
                   }
                     retry_join {
-                    leader_api_addr = "https://hashicorp-vault-s.hashicorp-vault-internal:8200"
+                    leader_api_addr = "http://hashicorp-vault-s.hashicorp-vault-internal:8200"
                   }
                   }
                   service_registration "kubernetes" {}
