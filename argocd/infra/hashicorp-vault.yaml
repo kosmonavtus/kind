@@ -11,6 +11,8 @@ spec:
     targetRevision: 0.29.1
     helm:
       values: |
+        injector:
+          enabled: false
         global:
           ingress:
             enabled: true
@@ -36,13 +38,13 @@ spec:
                   storage "raft" {
                   path = "/vault/data"
                     retry_join {
-                    leader_api_addr = "https://hashicorp-vault-0.hashicorp-vault-internal:8201"
+                    leader_api_addr = "https://hashicorp-vault-0.hashicorp-vault-internal:8200"
                   }
                     retry_join {
-                    leader_api_addr = "https://hashicorp-vault-1.hashicorp-vault-internal:8201"
+                    leader_api_addr = "https://hashicorp-vault-1.hashicorp-vault-internal:8200"
                   }
                     retry_join {
-                    leader_api_addr = "https://hashicorp-vault-s.hashicorp-vault-internal:8201"
+                    leader_api_addr = "https://hashicorp-vault-s.hashicorp-vault-internal:8200"
                   }
                   }
                   service_registration "kubernetes" {}
@@ -67,8 +69,7 @@ spec:
             serviceType: clusterIP
           agent:
             enabled: false
-          injector:
-            enabled: false
+
 
 
   destination:
