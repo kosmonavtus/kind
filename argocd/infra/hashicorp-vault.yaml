@@ -46,7 +46,7 @@ spec:
                   }
                   }
                   service_registration "kubernetes" {}
-                  
+
           dataStorage:
             enabled: true
             storageClass: standard
@@ -66,6 +66,8 @@ spec:
             enabled: true
             serviceType: clusterIP
           agent:
+            enabled: false
+          injector:
             enabled: false
 
 
