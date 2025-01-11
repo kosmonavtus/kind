@@ -12,13 +12,41 @@ spec:
     helm:
       values: |
         global:
-          enabled: true
+          ingress:
+            enabled: true
+            hosts:
+              - host: vault.laba.local
+                paths:
+                  - /
         server:
           ha:
             enabled: true
             replicas: 3
             raft:
               enabled: true
+              config: |
+                listener "tcp" {
+                  tls_disable = 1
+                  address = "[::]:8200"
+                  cluster_address = "[::]:8201"
+                  }
+
+                  ui = true
+                  
+                  storage "raft" {
+                  path = "/vault/data"
+                    retry_join {
+                    leader_api_addr = "https://hashicorp-vault-0.hashicorp-vault-internal:8201"
+                  }
+                    retry_join {
+                    leader_api_addr = "https://hashicorp-vault-1.hashicorp-vault-internal:8201"
+                  }
+                    retry_join {
+                    leader_api_addr = "https://hashicorp-vault-s.hashicorp-vault-internal:8201"
+                  }
+                  }
+                  service_registration "kubernetes" {}
+                  
           dataStorage:
             enabled: true
             storageClass: standard
