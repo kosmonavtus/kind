@@ -18,12 +18,18 @@ spec:
       valueFiles:
         - values.yaml
       values: |
-              controller: 
+              controller:
+                tolerations:
+                  - key: node-role.kubernetes.io/control-plane
+                    operator: "Exists"
+                    effect: NoSchedule
+                nodeSelector:
+                  app.kubernetes.io/name: ingress-nginx
                 name: controller
                 ingressClassResource:
                   name: nginx
                   enabled: true
-                  default: false
+                  default: true
                 service:
                   # -- Enable controller services or not. This does not influence the creation of either the admission webhook or the metrics service.
                   enabled: true

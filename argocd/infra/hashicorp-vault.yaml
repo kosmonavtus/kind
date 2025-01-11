@@ -13,14 +13,14 @@ spec:
       values: |
         injector:
           enabled: false
-        global:
+        server:
           ingress:
+            ingressClassName: nginx
             enabled: true
             hosts:
               - host: vault.laba.local
                 paths:
                   - /
-        server:
           ha:
             enabled: true
             replicas: 3

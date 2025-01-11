@@ -10,7 +10,6 @@ networking:
 nodes:
 - role: control-plane
   labels:
-    ingress-ready: true
     app.kubernetes.io/name: ingress-nginx
   extraPortMappings:
   - containerPort: 80
