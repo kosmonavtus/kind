@@ -7,3 +7,8 @@ kubectl create secret generic ingress-nginx-admission-token \
 ## argocd default password extract
 
 k get secrets -n argocd argocd-initial-admin-secret  -o yaml | yq eval '.data.password'  | base64 -d
+
+
+## reset argocd pass
+
+kubectl patch secret argocd-secret  -p '{"data": {"admin.password": null, "admin.passwordMtime": null}}'
